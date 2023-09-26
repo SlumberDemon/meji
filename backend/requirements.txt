@@ -1,0 +1,4 @@
+py-sudoku
+uvicorn
+fastapi
+deta
