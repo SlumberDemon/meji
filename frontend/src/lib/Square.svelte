@@ -29,7 +29,7 @@
 {#if numSelect}
   <!-- svelte-ignore a11y-click-events-have-key-events -->
   <div
-    class="modal-overlay fixed inset-0 bg-black opacity-75 backdrop-blur-md"
+    class="fixed inset-0 bg-black opacity-75 backdrop-blur-md"
     on:click={() => closeNum()}
   />
   <div class="absolute align-top">
