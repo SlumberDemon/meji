@@ -19,7 +19,9 @@
   <title>Meji</title>
 </svelte:head>
 
-<div class="flex justify-center items-center m-4 flex-col select-none">
+<div
+  class="flex justify-center items-center m-2 md:m-4 lg:m-4 flex-col select-none"
+>
   <div>
     <div class="items-center flex flex-row justify-between">
       <div>
