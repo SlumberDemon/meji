@@ -8,13 +8,18 @@
     console.log("New Board");
     // return fetch(`/board/create`).then((r) => r.json()); // set data to new board data or retrigger fetch again somehow
   }
+
+  function numClick(i, j) {
+    console.log(i);
+    console.log(j);
+  }
 </script>
 
 <svelte:head>
   <title>Meji</title>
 </svelte:head>
 
-<div class="flex justify-center items-center m-4 flex-col">
+<div class="flex justify-center items-center m-4 flex-col select-none">
   <div>
     <div class="items-center flex flex-row justify-between">
       <div>
@@ -34,7 +39,10 @@
     <div class="grid grid-cols-9 my-4">
       {#each data.board as i}
         {#each i as j}
-          <Square square={j} />
+          <!-- svelte-ignore a11y-click-events-have-key-events -->
+          <div on:click={() => numClick(i, j)}>
+            <Square square={j} />
+          </div>
         {/each}
       {/each}
     </div>

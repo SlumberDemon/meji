@@ -16,11 +16,16 @@
   function closeNum() {
     numSelect = false;
   }
+
+  function updateNum(number) {
+    square = number;
+    closeNum();
+  }
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
-  class="bg-bg2 lg:m-1 select-none lg:p-4 text-center font-thin rounded-md lg:text-2xl hover:bg-bg3 cursor-pointer text-tertiary md:m-1 md:text-2xl md:p-2"
+  class="bg-bg2 lg:m-1 lg:p-4 text-center font-thin rounded-md lg:text-2xl hover:bg-bg3 cursor-pointer text-tertiary md:m-1 md:text-2xl md:p-2"
   on:click={() => openNum()}
 >
   <div style={displayClass}>
@@ -32,7 +37,7 @@
 {#if numSelect}
   <!-- svelte-ignore a11y-click-events-have-key-events -->
   <div
-    class="fixed inset-0 bg-black opacity-75 backdrop-blur-md"
+    class="fixed inset-0 bg-black opacity-20 backdrop-blur-md"
     on:click={() => closeNum()}
   />
   <div class="absolute align-top">
@@ -41,7 +46,11 @@
     >
       {#each [1, 2, 3, 4, 5, 6, 7, 8, 9] as number}
         <!-- -<input type="radio" name="selectedNum" value={number} bind:group={selectedNum} /> -->
-        <div class="p-2 hover:scale-110 cursor-pointer">
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <div
+          class="p-2 hover:scale-110 cursor-pointer"
+          on:click={() => updateNum(number)}
+        >
           {number}
         </div>
       {/each}

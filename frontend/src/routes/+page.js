@@ -7,6 +7,7 @@ export async function load({ fetch }) {
 
   const board = await data.get("board");
   const difficulty = await data.get("difficulty");
+  const size = await data.get("size");
 
   let r;
 
@@ -16,6 +17,7 @@ export async function load({ fetch }) {
 
   console.log(board.value);
   return {
+    size: size,
     board: board.value || r.board,
   };
 }
