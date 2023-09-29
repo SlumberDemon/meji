@@ -1,5 +1,7 @@
 <script>
+  import Tips from "../lib/Tips.svelte";
   import Square from "../lib/Square.svelte";
+  import Settings from "../lib/Settings.svelte";
 
   /** @type {import('./$types').PageData} */
   export let data;
@@ -13,11 +15,17 @@
     console.log(i);
     console.log(j);
   }
+
+  let tips = true;
+
+  //$: {if (data && data.board) {tips = true; }}
 </script>
 
 <svelte:head>
   <title>Meji</title>
 </svelte:head>
+
+<Settings />
 
 <div
   class="flex justify-center items-center m-2 md:m-4 lg:m-4 flex-col select-none"
@@ -49,4 +57,7 @@
       {/each}
     </div>
   </div>
+  {#if tips}
+    <Tips />
+  {/if}
 </div>

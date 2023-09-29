@@ -42,13 +42,12 @@
   />
   <div class="absolute align-top z-20">
     <div
-      class="text-2xl bg-bg3 rounded-md flex flex-row p-1 items-center font-thin gap-2 drop-shadow-md"
+      class="lg:text-2xl bg-bg3 rounded-md flex flex-row p-1 items-center font-thin lg:gap-2 drop-shadow-md gap-1 md:text-1xl"
     >
       {#each [1, 2, 3, 4, 5, 6, 7, 8, 9] as number}
-        <!-- -<input type="radio" name="selectedNum" value={number} bind:group={selectedNum} /> -->
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <div
-          class="p-2 hover:scale-110 cursor-pointer"
+          class="lg:p-2 hover:scale-110 cursor-pointer text-secondary md:p-1"
           on:click={() => updateNum(number)}
         >
           {number}

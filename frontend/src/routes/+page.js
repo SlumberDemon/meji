@@ -3,11 +3,11 @@
 import { Base } from "deta";
 
 export async function load({ fetch }) {
-  const data = Base("state");
+  const state = Base("state");
 
-  const board = await data.get("board");
-  const difficulty = await data.get("difficulty");
-  const size = await data.get("size");
+  const board = await state.get("board");
+  const difficulty = await state.get("difficulty");
+  const size = await state.get("size");
 
   let r;
 
