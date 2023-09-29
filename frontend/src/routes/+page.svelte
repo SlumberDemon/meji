@@ -16,9 +16,9 @@
     console.log(j);
   }
 
-  let tips = true;
-
   //$: {if (data && data.board) {tips = true; }}
+
+  $: tips = data.tip;
 </script>
 
 <svelte:head>

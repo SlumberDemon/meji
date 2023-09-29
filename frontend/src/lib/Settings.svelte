@@ -1,5 +1,34 @@
+<script>
+  import { onMount } from "svelte";
+  import { Base } from "deta";
+
+  const settings = Base("settings");
+
+  async function updateTip() {
+    const newState = await stateTip();
+    settings.put({ value: !newState }, "tip");
+  }
+
+  async function stateTip() {
+    const currentState = await settings.get("tip");
+    return currentState.value;
+  }
+
+  let settingsState = false;
+
+  function openSet() {
+    settingsState = true;
+  }
+
+  function closeSet() {
+    settingsState = false;
+  }
+</script>
+
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
   class="flex flex-row m-1 justify-end fixed bottom-0 right-0 cursor-pointer bg-bg2 rounded-md p-1 hover:bg-bg3 items-center"
+  on:click={() => openSet()}
 >
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -25,3 +54,22 @@
     <path d="M19 18l1 0" />
   </svg>
 </div>
+
+{#if settingsState}
+  <!-- svelte-ignore a11y-click-events-have-key-events -->
+  <div
+    class="fixed inset-0 bg-black opacity-20 backdrop-blur-md z-10"
+    on:click={() => closeSet()}
+  />
+  <div class="align-top z-20 fixed bottom-14 right-0 m-1 bg-bg3 p-2 rounded-md">
+    <div class="items-center flex-row flex text-secondary gap-6">
+      Tips
+      <!-- svelte-ignore a11y-click-events-have-key-events -->
+      <div
+        class="p-2 bg-bg2 rounded-full border-brand border-spacing-2 cursor-pointer"
+        class:border-2={() => !stateTip}
+        on:click={() => updateTip()}
+      />
+    </div>
+  </div>
+{/if}
