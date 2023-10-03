@@ -9,6 +9,6 @@
   });
 </script>
 
-<div class="text-quaternary mx-2 text-center lg:text-1xl text-xs">
+<div class="text-quaternary mx-2 text-center lg:text-xl text-xs md:text-lg">
   {tip.tip || "..."}
 </div>

@@ -1,12 +1,13 @@
 <script>
-  import { onMount } from "svelte";
   import { Base } from "deta";
+  import { onMount } from "svelte";
 
   const settings = Base("settings");
 
   async function updateTip() {
     const newState = await stateTip();
     settings.put({ value: !newState }, "tip");
+    closeSet();
   }
 
   async function stateTip() {
@@ -14,15 +15,23 @@
     return currentState.value;
   }
 
+  let tipState;
   let settingsState = false;
 
-  function openSet() {
+  async function openSet() {
+    const currentState = await settings.get("tip");
+    tipState = currentState.value;
     settingsState = true;
   }
 
   function closeSet() {
     settingsState = false;
   }
+
+  onMount(async () => {
+    const currentState = await settings.get("tip");
+    tipState = currentState.value;
+  });
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -32,7 +41,7 @@
 >
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    class="icon icon-tabler icon-tabler-adjustments-horizontal stroke-secondary h-10 w-10"
+    class="icon icon-tabler icon-tabler-adjustments-horizontal stroke-secondary lg:h-10 lg:w-10 md:w-8 md:h-8 h-6 w-6"
     width="60"
     height="60"
     viewBox="0 0 24 24"
@@ -64,10 +73,10 @@
   <div class="align-top z-20 fixed bottom-14 right-0 m-1 bg-bg3 p-2 rounded-md">
     <div class="items-center flex-row flex text-secondary gap-6">
       Tips
-      <!-- svelte-ignore a11y-click-events-have-key-events -->
+      <!-- svelte-ignore a11y-click-events-have-key-events-->
       <div
         class="p-2 bg-bg2 rounded-full border-brand border-spacing-2 cursor-pointer"
-        class:border-2={() => !stateTip}
+        class:border-2={tipState}
         on:click={() => updateTip()}
       />
     </div>
