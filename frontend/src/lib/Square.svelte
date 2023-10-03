@@ -26,6 +26,7 @@
 
     const i = board.indexOf(x);
     const j = x.indexOf(y); // fix issues where it gets first null from array which may not align with the selected null
+    // potential fixes; add some sort of counter to the loop or indexing
 
     y = number;
     board[i][j] = y;
