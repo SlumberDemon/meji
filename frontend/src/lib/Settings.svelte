@@ -1,3 +1,5 @@
+<!-- Center the settings menu in the middle of screen?-->
+
 <script>
   import { Base } from "deta";
   import { onMount } from "svelte";
