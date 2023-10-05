@@ -6,7 +6,7 @@
   import Settings from "../lib/Settings.svelte";
 
   const stats = Base("stats");
-  const sets = Base("setttings");
+  const sets = Base("settings");
 
   let solveCheck;
   let solvedVar;
