@@ -221,7 +221,7 @@
         </div>
       </div>
       <div class="text-quaternary text-xs mt-2">
-        (Note: If board is empty try reloading)
+        (⚠️ Try reloading if the board is empty ⚠️)
       </div>
       <!-- svelte-ignore a11y-click-events-have-key-events -->
       <div
