@@ -9,7 +9,7 @@ media:
 
 ## Welcome to Meji
 
-If you haven't plaved sudoko before learn how to play [here](https://sudoku.com/how-to-play/sudoku-rules-for-complete-beginners/)
+If you haven't played sudoko before learn how to play [here](https://sudoku.com/how-to-play/sudoku-rules-for-complete-beginners/)
 
 ### Twists
 
