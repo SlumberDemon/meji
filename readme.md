@@ -4,4 +4,6 @@
 
 # Meji
 
+<img src="screenshots/main.png">
+
 </div>
