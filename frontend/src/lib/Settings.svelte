@@ -8,7 +8,7 @@
 
   async function updateTip() {
     const newState = await stateTip();
-    settings.put({ value: !newState }, "tip");
+    await settings.put({ value: !newState }, "tip");
     closeSet();
     window.location.reload();
   }

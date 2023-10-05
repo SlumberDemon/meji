@@ -5,8 +5,8 @@
   import Square from "../lib/Square.svelte";
   import Settings from "../lib/Settings.svelte";
 
-  const state = Base("state");
   const stats = Base("stats");
+  const sets = Base("setttings");
 
   let solveCheck;
   let solvedVar;
@@ -21,9 +21,7 @@
   async function solveBoard() {
     solving = true;
 
-    let r;
-
-    r = await fetch(`/board/validate`).then((res) => res.json());
+    const r = await fetch(`/board/validate`).then((res) => res.json());
 
     solvedVar = r.validate;
     if (r.validate) {
@@ -38,7 +36,13 @@
     solvedVar = null;
   }
 
-  async function newBoard() {
+  function newBoard() {
+    fetch(`/board/create`);
+    window.location.reload();
+  }
+
+  async function begin() {
+    await sets.put({ value: false }, "pop");
     fetch(`/board/create`);
     window.location.reload();
   }
@@ -88,7 +92,7 @@
           class="text-secondary md:text-2xl md:p-2 bg-bg2 rounded-md hover:bg-bg3 cursor-pointer text-sm p-2"
           on:click={() => newBoard()}
         >
-          New Game
+          New Board
         </div>
         <div class="flex flex-row gap-2 md:text-xl text-sm">
           <div class="text-quaternary font-thin uppercase">Solved</div>
@@ -149,7 +153,7 @@
     {#if solved == true}
       <div class="fixed inset-0 bg-black opacity-20 backdrop-blur-md z-10" />
       <div
-        class="z-20 absolute bg-bg p-8 rounded-md items-center flex flex-col"
+        class="z-20 absolute bg-bg p-8 rounded-md items-center flex flex-col drop-shadow-md"
         in:blur
       >
         <div class="text-5xl text-brand font-thin uppercase">Solved</div>
@@ -165,14 +169,14 @@
             class="text-secondary md:text-2xl md:p-2 bg-bg2 rounded-md hover:bg-bg3 cursor-pointer text-sm p-2"
             on:click={() => newBoard()}
           >
-            New Game
+            New Board
           </div>
         </div>
       </div>
     {:else if solved == false}
       <div class="fixed inset-0 bg-black opacity-20 backdrop-blur-md z-10" />
       <div
-        class="z-20 absolute bg-bg p-8 rounded-md items-center flex flex-col"
+        class="z-20 absolute bg-bg p-8 rounded-md items-center flex flex-col drop-shadow-md"
         in:blur
       >
         <div class="text-5xl text-brand font-thin uppercase">Not Solved</div>
@@ -188,5 +192,39 @@
         </div>
       </div>
     {/if}
+  {/if}
+
+  {#if data.pop}
+    <div class="fixed inset-0 bg-black opacity-20 backdrop-blur-md z-10" />
+    <div
+      class="z-20 absolute bg-bg p-4 rounded-md flex flex-col drop-shadow-md m-4"
+      in:blur
+    >
+      <div
+        class="lg:text-3xl md:text-2xl text-xl flex-row flex gap-2 text-primary"
+      >
+        Welcome to <div class="text-brand font-bold">Meji</div>
+      </div>
+      <div class="lg:text-xl text-sm text-secondary md:text-lg">
+        If you haven't played sudoko before learn how to play [<a
+          class="text-quaternary"
+          href="https://sudoku.com/how-to-play/sudoku-rules-for-complete-beginners/"
+          >here</a
+        >]
+      </div>
+      <div class="mt-2">
+        <div class="lg:text-2xl text-primary text-xl">Twists</div>
+        <div class="text-secondary lg:text-xl text-sm md:text-lg">
+          Meji uses ᖘ̸̤̐͝ꍏ̴̗̼̩̀͌̒꓄̷̠͈̞̑̇ꌚ̸̈͝ to encourage/correct players
+        </div>
+      </div>
+      <!-- svelte-ignore a11y-click-events-have-key-events -->
+      <div
+        class="text-secondary md:text-2xl md:p-2 bg-bg2 rounded-md hover:bg-bg3 cursor-pointer text-sm p-2 mt-4 text-center"
+        on:click={() => begin()}
+      >
+        Begin
+      </div>
+    </div>
   {/if}
 </div>

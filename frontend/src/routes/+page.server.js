@@ -2,28 +2,37 @@
 
 import { Base } from "deta";
 
-export async function load({ fetch }) {
+export async function load() {
   const settings = Base("settings");
   const state = Base("state");
   const stats = Base("stats");
 
   const board = await state.get("board");
   // const difficulty = await state.get("difficulty");
-  const size = await state.get("size");
   const tip = await settings.get("tip");
+  const pop = await settings.get("pop");
   const solved = await stats.get("solved");
 
-  if (!board || !solved) {
-    await settings.put({ value: false, key: "tip" });
+  if (!board) {
+    await settings.put({ value: true, key: "tip" });
+    await settings.put({ value: true, key: "pop" });
     await stats.put({ value: 0, key: "solved" });
-    fetch(`/board/create`);
-    window.location.reload();
   }
 
   return {
-    size: size.value,
-    board: board.value,
+    board: board?.value || [
+      [null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null],
+    ],
     tip: tip.value,
     solved: solved.value,
+    pop: pop.value,
   };
 }
