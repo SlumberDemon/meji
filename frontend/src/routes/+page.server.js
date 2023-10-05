@@ -13,14 +13,18 @@ export async function load() {
   const pop = await settings.get("pop");
   const solved = await stats.get("solved");
 
+  let p;
+  let t;
+  let s;
+
   if (!board) {
-    await settings.put({ value: true, key: "tip" });
-    await settings.put({ value: true, key: "pop" });
-    await stats.put({ value: 0, key: "solved" });
+    t = await settings.put({ value: true, key: "tip" });
+    p = await settings.put({ value: true, key: "pop" });
+    s = await stats.put({ value: 0, key: "solved" });
   }
 
   return {
-    board: board?.value || [
+    board: board?.value ?? [
       [null, null, null, null, null, null, null, null, null],
       [null, null, null, null, null, null, null, null, null],
       [null, null, null, null, null, null, null, null, null],
@@ -31,8 +35,8 @@ export async function load() {
       [null, null, null, null, null, null, null, null, null],
       [null, null, null, null, null, null, null, null, null],
     ],
-    tip: tip.value,
-    solved: solved.value,
-    pop: pop.value,
+    solved: solved?.value ?? s?.value ?? 0,
+    tip: tip?.value ?? t?.value ?? true,
+    pop: pop?.value ?? p?.value ?? true,
   };
 }

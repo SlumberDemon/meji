@@ -69,6 +69,8 @@
   $: solved = solvedVar;
   $: solve = !solveCheck;
   $: showSolve = !solveShow;
+
+  console.log(data.pop);
 </script>
 
 <svelte:head>
@@ -217,6 +219,9 @@
         <div class="text-secondary lg:text-xl text-sm md:text-lg">
           Meji uses ᖘ̸̤̐͝ꍏ̴̗̼̩̀͌̒꓄̷̠͈̞̑̇ꌚ̸̈͝ to encourage/correct players
         </div>
+      </div>
+      <div class="text-quaternary text-xs mt-2">
+        (Note: If board is empty try reloading)
       </div>
       <!-- svelte-ignore a11y-click-events-have-key-events -->
       <div
