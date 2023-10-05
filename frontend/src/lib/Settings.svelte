@@ -10,6 +10,7 @@
     const newState = await stateTip();
     settings.put({ value: !newState }, "tip");
     closeSet();
+    window.location.reload();
   }
 
   async function stateTip() {

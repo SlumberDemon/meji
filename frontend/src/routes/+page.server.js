@@ -13,18 +13,17 @@ export async function load({ fetch }) {
   const tip = await settings.get("tip");
   const solved = await stats.get("solved");
 
-  let r;
-
-  // move to +page.svelte in onMount
-
   if (!board || !solved) {
-    // await stats.put({value: 0, key: "solved"})
-    r = await fetch(`/board/create`).then((res) => res.json());
+    await settings.put({ value: false, key: "tip" });
+    await stats.put({ value: 0, key: "solved" });
+    fetch(`/board/create`);
+    window.location.reload();
   }
 
   return {
     size: size.value,
-    board: board.value || r.board,
+    board: board.value,
     tip: tip.value,
+    solved: solved.value,
   };
 }
