@@ -13,6 +13,8 @@
   let solving = false;
   let solveShow;
 
+  let tipTip;
+
   /** @type {import('./$types').PageData} */
   export let data;
 
@@ -37,13 +39,16 @@
   }
 
   async function newBoard() {
-    await state.delete("board");
-    await state.delete("difficulty");
-    await state.delete("size");
-    await state.delete("height");
-    await state.delete("width");
     fetch(`/board/create`);
     window.location.reload();
+  }
+
+  async function sqrTrig() {
+    if (data.tip) {
+      const r = await fetch(`/board/tip`).then((res) => res.json());
+      tipTip = r.tip;
+    }
+    containsNull(data.board);
   }
 
   function containsNull(arr) {
@@ -96,7 +101,7 @@
       {#each data.board as x}
         {#each x as y, z}
           <!-- svelte-ignore a11y-click-events-have-key-events -->
-          <div on:click={() => containsNull(data.board)}>
+          <div on:click={() => sqrTrig()}>
             <Square board={data.board} {x} {y} {z} />
           </div>
         {/each}
@@ -105,7 +110,7 @@
   </div>
   {#if tips}
     {#if !solve}
-      <Tips />
+      <Tips tip={tipTip} />
     {/if}
   {/if}
 
