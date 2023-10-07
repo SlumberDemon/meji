@@ -239,18 +239,22 @@
 <style>
   /* Add borders between squares to divide the 9x9 grid into 3x3 subgrids */
   .square {
-    border: 1px solid transparent;
+    border: 0.5px solid transparent;
   }
-  .square:nth-child(3), .square:nth-child(6) {
-    border-bottom: 1px solid hsl(var(--twc-quaternary));
+  .square:nth-child(3),
+  .square:nth-child(6) {
+    border-bottom: 0.5px solid hsl(var(--twc-quaternary));
   }
-  .square:nth-child(4), .square:nth-child(7) {
-    border-top: 1px solid hsl(var(--twc-quaternary));
+  .square:nth-child(4),
+  .square:nth-child(7) {
+    border-top: 0.5px solid hsl(var(--twc-quaternary));
   }
-  .col:nth-child(3) .square, .col:nth-child(6) .square {
-    border-right: 1px solid hsl(var(--twc-quaternary));
+  .col:nth-child(3) .square,
+  .col:nth-child(6) .square {
+    border-right: 0.5px solid hsl(var(--twc-quaternary));
   }
-  .col:nth-child(4) .square, .col:nth-child(7) .square {
-    border-left: 1px solid hsl(var(--twc-quaternary));
+  .col:nth-child(4) .square,
+  .col:nth-child(7) .square {
+    border-left: 0.5px solid hsl(var(--twc-quaternary));
   }
 </style>
