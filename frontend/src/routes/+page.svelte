@@ -105,12 +105,14 @@
 
     <div class="grid grid-cols-9 my-4">
       {#each data.board as x}
-        {#each x as y, z}
-          <!-- svelte-ignore a11y-click-events-have-key-events -->
-          <div on:click={() => sqrTrig()}>
-            <Square board={data.board} {x} {y} {z} />
-          </div>
-        {/each}
+        <div class="col">
+          {#each x as y, z}
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <div class="square" on:click={() => sqrTrig()}>
+              <Square board={data.board} {x} {y} {z} />
+            </div>
+          {/each}
+        </div>
       {/each}
     </div>
   </div>
@@ -233,3 +235,22 @@
     </div>
   {/if}
 </div>
+
+<style>
+  /* Add borders between squares to divide the 9x9 grid into 3x3 subgrids */
+  .square {
+    border: 1px solid transparent;
+  }
+  .square:nth-child(3), .square:nth-child(6) {
+    border-bottom: 1px solid hsl(var(--twc-quaternary));
+  }
+  .square:nth-child(4), .square:nth-child(7) {
+    border-top: 1px solid hsl(var(--twc-quaternary));
+  }
+  .col:nth-child(3) .square, .col:nth-child(6) .square {
+    border-right: 1px solid hsl(var(--twc-quaternary));
+  }
+  .col:nth-child(4) .square, .col:nth-child(7) .square {
+    border-left: 1px solid hsl(var(--twc-quaternary));
+  }
+</style>

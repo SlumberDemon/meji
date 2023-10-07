@@ -36,7 +36,7 @@
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
-  class="bg-bg2 lg:m-1 lg:p-4 text-center md:font-thin lg:font-thin rounded-md lg:text-2xl hover:bg-bg3 cursor-pointer text-tertiary md:m-1 md:text-2xl md:p-2 z-0 p-2 text-sm m-0.5 lg:w-16 md:w-12 w-8"
+  class="bg-bg2 lg:m-1 lg:p-4 text-center md:font-thin lg:font-thin rounded-md lg:text-2xl hover:bg-bg3 cursor-pointer text-tertiary md:m-1 md:text-2xl md:p-2 z-0 p-2 text-sm m-0.5 lg:w-16 md:w-12 w-8 h-8 lg:h-16 md:h-12"
   on:click={() => openNum()}
 >
   <div style={displayClass}>
