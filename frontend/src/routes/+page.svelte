@@ -69,8 +69,6 @@
   $: solved = solvedVar;
   $: solve = !solveCheck;
   $: showSolve = !solveShow;
-
-  console.log(data.pop);
 </script>
 
 <svelte:head>
